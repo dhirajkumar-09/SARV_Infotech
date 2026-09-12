@@ -1,6 +1,6 @@
-# SARV Infotech — Web Development Course Projects
+# SARV Infotech — Web Development Internship Projects
 
-This repository contains two projects built as part of the **Web Development Course at SARV Infotech**:
+This repository contains two projects built during my **Web Development Internship at SARV Infotech**:
 
 1. [Calculator App](#-1-calculator-app) — a simple calculator built using HTML, CSS, and JavaScript.
 2. [AuraShop](#-2-aurashop--full-stack-e-commerce-web-application) — a full-stack e-commerce web application built using the MERN stack with Stripe payment integration.
@@ -163,11 +163,11 @@ http://localhost:5173
 ## 👨‍💻 Author
 
 **Dhiraj Kumar**
-Web Development Course — SARV Infotech
+Web Development Intern — SARV Infotech
 GitHub: [dhirajkumar-09](https://github.com/dhirajkumar-09)
 
 ---
 
 ## 📄 License
 
-This project is created for educational purposes as part of the SARV Infotech Web Development Course.
+This project was built for learning and demonstration purposes as part of my Web Development Internship at SARV Infotech.
