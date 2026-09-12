@@ -1,0 +1,346 @@
+/* ==========================================================================
+   Modern Responsive Calculator Stylesheet
+   Theme: Dark Elegance & Glassmorphism Card
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-gradient-start: #0f172a;
+  --bg-gradient-end: #1e293b;
+  --calc-body-bg: #1e293b;
+  --calc-border: rgba(255, 255, 255, 0.08);
+  --calc-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  /* Display Screen Colors */
+  --display-bg: #0f172a;
+  --display-border: rgba(255, 255, 255, 0.06);
+  --history-text: #94a3b8;
+  --current-text: #f8fafc;
+
+  /* Button Colors */
+  --btn-num-bg: #334155;
+  --btn-num-hover: #475569;
+  --btn-num-active: #1e293b;
+  --btn-num-text: #f8fafc;
+
+  --btn-op-bg: #2563eb;
+  --btn-op-hover: #3b82f6;
+  --btn-op-active: #1d4ed8;
+  --btn-op-text: #ffffff;
+
+  --btn-clear-bg: #dc2626;
+  --btn-clear-hover: #ef4444;
+  --btn-clear-active: #b91c1c;
+  --btn-clear-text: #ffffff;
+
+  --btn-del-bg: #475569;
+  --btn-del-hover: #64748b;
+  --btn-del-active: #334155;
+  --btn-del-text: #e2e8f0;
+
+  --btn-eq-bg: #059669;
+  --btn-eq-hover: #10b981;
+  --btn-eq-active: #047857;
+  --btn-eq-text: #ffffff;
+
+  /* Dimensions & Radius */
+  --calc-radius: 24px;
+  --btn-radius: 14px;
+  --display-radius: 16px;
+  --transition-speed: 0.15s;
+}
+
+/* Base Reset & Layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0a0f1d 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  padding: 20px;
+  color: #f8fafc;
+}
+
+.calculator-container {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Calculator Card */
+.calculator {
+  width: 100%;
+  background: var(--calc-body-bg);
+  border: 1px solid var(--calc-border);
+  border-radius: var(--calc-radius);
+  box-shadow: var(--calc-shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  backdrop-filter: blur(12px);
+}
+
+/* Display Screen */
+.display-screen {
+  background: var(--display-bg);
+  border: 1px solid var(--display-border);
+  border-radius: var(--display-radius);
+  padding: 16px 20px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  user-select: none;
+}
+
+.display-history {
+  width: 100%;
+  min-height: 24px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--history-text);
+  text-align: right;
+  overflow-x: auto;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.display-history::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.display-current {
+  width: 100%;
+  min-height: 48px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--current-text);
+  text-align: right;
+  overflow-x: auto;
+  white-space: nowrap;
+  letter-spacing: -0.5px;
+  scrollbar-width: none;
+  line-height: 1.2;
+}
+
+.display-current::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keypad Grid (CSS Grid: 4 columns) */
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Button Component Styles */
+.btn {
+  height: 60px;
+  border: none;
+  outline: none;
+  border-radius: var(--btn-radius);
+  font-size: 1.35rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) ease,
+              background-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
+  user-select: none;
+  position: relative;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Accessible focus visible */
+.btn:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Press animation on click or keyboard press */
+.btn:active,
+.btn.is-pressed {
+  transform: scale(0.94);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Column Spans */
+.span-two {
+  grid-column: span 2;
+}
+
+/* Button Categories & Themes */
+
+/* Number Buttons (0-9, .) */
+.btn-number {
+  background-color: var(--btn-num-bg);
+  color: var(--btn-num-text);
+}
+
+.btn-number:hover {
+  background-color: var(--btn-num-hover);
+}
+
+.btn-number:active,
+.btn-number.is-pressed {
+  background-color: var(--btn-num-active);
+}
+
+/* Operator Buttons (+, -, ×, ÷) */
+.btn-operator {
+  background-color: var(--btn-op-bg);
+  color: var(--btn-op-text);
+  font-size: 1.5rem;
+}
+
+.btn-operator:hover {
+  background-color: var(--btn-op-hover);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+.btn-operator:active,
+.btn-operator.is-pressed {
+  background-color: var(--btn-op-active);
+}
+
+/* Clear Button (C) */
+.btn-clear {
+  background-color: var(--btn-clear-bg);
+  color: var(--btn-clear-text);
+  font-weight: 600;
+}
+
+.btn-clear:hover {
+  background-color: var(--btn-clear-hover);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+.btn-clear:active,
+.btn-clear.is-pressed {
+  background-color: var(--btn-clear-active);
+}
+
+/* Delete Button (⌫) */
+.btn-delete {
+  background-color: var(--btn-del-bg);
+  color: var(--btn-del-text);
+  font-size: 1.25rem;
+}
+
+.btn-delete:hover {
+  background-color: var(--btn-del-hover);
+}
+
+.btn-delete:active,
+.btn-delete.is-pressed {
+  background-color: var(--btn-del-active);
+}
+
+/* Equals Button (=) */
+.btn-equals {
+  background-color: var(--btn-eq-bg);
+  color: var(--btn-eq-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.btn-equals:hover {
+  background-color: var(--btn-eq-hover);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.btn-equals:active,
+.btn-equals.is-pressed {
+  background-color: var(--btn-eq-active);
+}
+
+/* Error state styling for display */
+.display-current.error-text {
+  color: #f87171;
+  font-size: 2rem;
+}
+
+/* ==========================================================================
+   Responsive Adaptations (Mobile Screens)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+
+  .calculator {
+    padding: 16px;
+    border-radius: 20px;
+    gap: 16px;
+  }
+
+  .display-screen {
+    padding: 14px 16px;
+    min-height: 95px;
+  }
+
+  .display-current {
+    font-size: 2.1rem;
+    min-height: 42px;
+  }
+
+  .keypad-grid {
+    gap: 10px;
+  }
+
+  .btn {
+    height: 54px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .btn-operator,
+  .btn-equals {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-height: 580px) and (orientation: landscape) {
+  body {
+    padding: 8px;
+  }
+
+  .calculator {
+    padding: 12px;
+    gap: 10px;
+    max-width: 440px;
+  }
+
+  .display-screen {
+    min-height: 60px;
+    padding: 8px 12px;
+  }
+
+  .display-current {
+    font-size: 1.6rem;
+    min-height: 28px;
+  }
+
+  .btn {
+    height: 42px;
+    font-size: 1.1rem;
+  }
+}
