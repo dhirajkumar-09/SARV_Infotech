@@ -1,0 +1,18 @@
+{
+  "name": "fullstack-ecommerce",
+  "version": "1.0.0",
+  "description": "Full-stack E-Commerce Web Application (React, Express, MongoDB, Stripe, JWT)",
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run server\" \"npm run client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server",
+    "build": "npm run build --prefix client"
+  },
+  "keywords": ["ecommerce", "react", "express", "mongodb", "stripe"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
